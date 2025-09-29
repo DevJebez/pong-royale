@@ -5,11 +5,11 @@ python-socketio==5.13.0
 Flask-CORS==4.0.0
 requests==2.32.5
 
-# Production WSGI server (Unix/Linux only)
-gunicorn==21.2.0; sys_platform != "win32"
+# Production WSGI server
+gunicorn==21.2.0
 
-# Alternative async server compatible with Python 3.11+
-gevent==23.9.1
+# Use threading mode for Flask-SocketIO (compatible with all Python versions)
+# No additional async server needed
 
 # Windows alternative for local testing
 waitress==3.0.0; sys_platform == "win32"
