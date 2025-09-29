@@ -1,0 +1,16 @@
+# Server dependencies for production deployment
+Flask==3.1.2
+Flask-SocketIO==5.5.1
+python-socketio==5.13.0
+Flask-CORS==4.0.0
+requests==2.32.5
+
+# Production WSGI server (Unix/Linux only)
+gunicorn==21.2.0; sys_platform != "win32"
+eventlet==0.33.3
+
+# Windows alternative for local testing
+waitress==3.0.0; sys_platform == "win32"
+
+# Client dependencies (only needed for local development)
+# pygame==2.6.1
