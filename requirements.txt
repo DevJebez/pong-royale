@@ -7,7 +7,9 @@ requests==2.32.5
 
 # Production WSGI server (Unix/Linux only)
 gunicorn==21.2.0; sys_platform != "win32"
-eventlet==0.33.3
+
+# Alternative async server compatible with Python 3.11+
+gevent==23.9.1
 
 # Windows alternative for local testing
 waitress==3.0.0; sys_platform == "win32"

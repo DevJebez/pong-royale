@@ -1,10 +1,10 @@
 # Simple Railway configuration
 [deploy]
-startCommand = "python -m gunicorn --worker-class eventlet -w 1 --bind 0.0.0.0:$PORT wsgi:app"
+startCommand = "gunicorn --worker-class gevent -w 1 --bind 0.0.0.0:$PORT wsgi:app"
 healthcheckPath = "/health"
 healthcheckTimeout = 120
 
 [env]
-PYTHON_VERSION = "3.11.4"
+PYTHON_VERSION = "3.11.9"
 PORT = "5000"
 FLASK_ENV = "production"

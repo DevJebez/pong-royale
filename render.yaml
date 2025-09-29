@@ -1,15 +1,13 @@
 # Render deployment configuration
-# For Render.com deployment
-
-# Service Type: Web Service
-# Build Command: pip install -r requirements.txt
-# Start Command: gunicorn --worker-class eventlet -w 1 --bind 0.0.0.0:$PORT wsgi:app
-
-# Environment Variables to set in Render dashboard:
-# PORT: (auto-set by Render)
-# FLASK_ENV: production
-# SECRET_KEY: (generate a secure secret key)
-
-# Health Check Path: /health
-
-# Auto-Deploy: Yes (connect to your GitHub repo)
+services:
+  - type: web
+    name: pong-royale-server
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --worker-class gevent -w 1 --bind 0.0.0.0:$PORT wsgi:app
+    healthCheckPath: /health
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.11.9
