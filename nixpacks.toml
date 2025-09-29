@@ -1,0 +1,12 @@
+# Nixpacks configuration for Railway
+[variables]
+PYTHON_VERSION = "3.11"
+
+[phases.setup]
+nixPkgs = ["python311", "python311Packages.pip"]
+
+[phases.install]
+cmds = ["pip install -r requirements.txt"]
+
+[start]
+cmd = "gunicorn --worker-class eventlet -w 1 --bind 0.0.0.0:$PORT wsgi:app"
