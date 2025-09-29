@@ -1,12 +1,18 @@
-# Nixpacks configuration for Railway
+# Force Python detection for Railway/Nixpacks
 [variables]
-PYTHON_VERSION = "3.11"
+NIXPACKS_PYTHON_VERSION = "3.11"
+
+[providers]
+python = "3.11"
 
 [phases.setup]
-nixPkgs = ["python311", "python311Packages.pip"]
+nixPkgs = ["python311", "python311Packages.pip", "python311Packages.setuptools"]
 
 [phases.install]
-cmds = ["pip install -r requirements.txt"]
+cmds = ["pip install --upgrade pip", "pip install -r requirements.txt"]
+
+[phases.build]
+cmds = ["echo 'Python Flask-SocketIO application ready'"]
 
 [start]
 cmd = "gunicorn --worker-class eventlet -w 1 --bind 0.0.0.0:$PORT wsgi:app"
